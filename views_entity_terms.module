@@ -1,0 +1,21 @@
+<?php
+/**
+ * @file
+ * Views Entity Terms file.
+ */
+
+/**
+ * Implements hook_views_plugins_alter().
+ */
+function views_entity_terms_views_plugins_alter(&$plugins) {
+  // Set the taxonomy argument handler to new custom handler.
+  $plugins['argument default']['taxonomy_tid']['handler'] = 'views_entity_terms_plugin_argument_default_taxonomy_tid';
+}
+
+/**
+ * Implements hook_views_data_alter().
+ */
+function views_entity_terms_views_data_alter(&$data) {
+  $data['taxonomy_term_data']['tid']['title'] = t('Term ID (with entityreference option)');
+  $data['taxonomy_term_data']['tid']['help'] = t('The tid of a taxonomy term, also reference-able in nodes by entity_id.');
+}
